@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My plantilla handlebars</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/styles.css" type="text/css" rel="stylesheet">
+
+</head>
+
+<body>
+<main class="text-center">
+    <div class=" flex">
+        <h1 class="h3 mb-3 font-weight-bold"> Ingrese sus producto:</h1>
+        <form class="formUploadSingle mt-3 mb-3" action="/app/uploadProducts" enctype="multipart/form-data" method="post">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="title">Titulo</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Titulo" value="" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="title">Precio</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Precio" value="" required>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="text-center col-md-12 ">
+                    <label for="image">Imagen</label>
+                    <input type="file" class="form-control " id="image " name="image" placeholder="url..." value="" required>
+                </div>
+            </div>
+
+            <button class="mt-4 btn btn-lg btn-primary btn-block " type="submit ">Upload</button>
+        </form>
+    </div>
+</main>
+
+<div class="container">
+        <div class="row">
+            <div class='btn-toolbar pull-right'>
+                <div class='btn-group'>
+                    <a type='button' class='m-5 btn btn-secondary' href="/app/productos">Vista</a>
+                </div>
+            </div>
+        </div> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My plantilla handlebars</title>
+     <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/styles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<main class="text-center">
+   <div class=" flex">
+        <h1 class="h3 mb-3 font-weight-bold"> Vista de Productos</h1>
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <th scope="row">{{this.id}}</th>
+                    <td>{{this.title}}</td>
+                    <td>{{this.price}}</td>
+                    <td><img src={{this.thumbnail}}/></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+<div class="container">
+        <div class="row">
+            <div class='btn-toolbar pull-right'>
+                <div class='btn-group'>
+                    <a type='button' class='m-5 btn btn-primary' href="/app/uploadProducts">Cargar</a>
+                </div>
+            </div>
+        </div> 
+    </div>
+</main>
+</body>
+</html>

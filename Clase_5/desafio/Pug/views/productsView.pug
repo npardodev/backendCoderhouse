@@ -1,0 +1,28 @@
+doctype html
+html(lang='es')
+    head
+    style
+        include ../../public/css/bootstrap.min.css
+        include ../../public/css/styles.css
+
+    title Hello, World!
+
+    body(class="text-center")
+        main(class="flex")
+            h1(class="h3 mb-3 font-weight-bold") Vista de Productos:</h1>
+
+        table.class.table-dark 
+            thead 
+                tr 
+                    th(scope="col") id
+                    th(scope="col") Nombre
+                    th(scope="col") Precio
+                    th(scope="col") Imagen
+                tbody
+                
+                    each product in products
+                        tr 
+                            th(scope="col") #{product.id} 
+                            th(scope="col") #{product.title} 
+                            th(scope="col") #{product.price} 
+                            th(scope="col") #{product.thumbnail} 
