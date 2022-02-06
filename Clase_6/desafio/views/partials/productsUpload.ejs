@@ -1,0 +1,23 @@
+<div class="text-center flex">
+    <h1 class="h3 mb-3 font-weight-bold "> Ingrese sus producto:</h1>
+    <form class="formUploadSingle mt-3 mb-3" action="/app/uploadProducts" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="title">Titulo</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titulo" value="" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="title">Precio</label>
+                <input type="text" class="form-control" id="price" name="price" placeholder="Precio" value="" required>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="text-center col-md-12 ">
+                <label for="image">Imagen</label>
+                <input type="file" class="form-control " id="image " name="image" placeholder="url..." value="" required>
+            </div>
+        </div>
+
+        <button id="uploadBtn" class="mt-4 btn btn-lg btn-primary btn-block " type="button">Upload</button>
+    </form>
+</div>

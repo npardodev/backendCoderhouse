@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./../partials/head'); %>
+</head>
+
+<body>
+    <section>
+        <%- include('./../partials/productsUpload'); %>
+    </section>
+
+    <section>
+        <%- include('./../partials/productsView', {products:products}); %>
+    </section>
+
+    <section>
+        <%- include('./../partials/chat'); %>
+    </section>
+
+
+    <footer>
+        <%- include('./../partials/footer'); %>
+    </footer>
+
+    <script>
+        //generamos la conexion
+        let socket = new io();
+        let messages = document.getElementById('messages');
+        let message = document.getElementById('message');
+
+        let form_data_user = document.getElementById('data_user');
+        let btn_upload = document.getElementById('uploadBtn');
+
+
+        const addProduct = (event) => {
+
+            let title = document.getElementById('title').value;
+            let price = document.getElementById('price').value;
+
+            const product = {
+                title: title,
+                price: price,
+                thumbnail: "src ...",
+            }
+
+            socket.emit('new-product', product);
+            return false;
+        }
+
+
+        const addMessage = (event) => {
+
+            const msg = {
+                user: document.getElementById('user').value,
+                message: document.getElementById('message').value,
+                date: new Date().toLocaleDateString("en-US")
+            }
+            socket.emit('new-message', msg);
+            return false;
+        }
+
+        const renderMessages = (dataMssg) => {
+
+            let html_msg = dataMssg.map((elem, index) => {
+                return (`<div>
+                    <b>${elem.user}</b> 
+                    <span>${elem.message}</span>
+                    <em>${elem.date}</em>
+                </div> `)
+            }).join("");
+            messages.innerHTML = html_msg;
+        }
+
+
+        const renderProducts = (dataProducts) => {
+
+                let productsView = document.getElementById('products-view');
+                productsView.innerHTML = `
+                
+                <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                ${dataProducts.map((elem, item) => {
+                        return (`<tr>
+                    <th scope="row">
+                        ${elem.id}
+                    </th>
+                        <td>${elem.title}</td>
+                        <td>${elem.price}</td>
+                        <td><img src=${elem.thumbnail}/></td>
+                    </tr>`)
+            }).join("")}
+                </tbody>
+            </table>`;
+        }
+
+        btn_upload.addEventListener("click", (e) => {
+            addProduct(e);
+            let formUpload = document.getElementsByClassName('formUploadSingle');
+            formUpload[0].submit();
+        })
+
+        form_data_user.addEventListener("submit", (e) => {
+            e.preventDefault();
+            addMessage(e);
+        })
+
+
+        //evento de escucha
+        socket.on("messages", data => {
+            renderMessages(data);
+        });
+
+        //evento de escucha
+        socket.on("products", data => {
+            renderProducts(data);
+        });
+
+
+        //evento de escucha
+        socket.on("init", data => {
+            console.log("Iniciando!");
+        });
+    </script>
+</body>
+
+</html>
