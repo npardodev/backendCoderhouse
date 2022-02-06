@@ -1,0 +1,6 @@
+
+
+# npm i express  
+
+# npm i nodemon -D     
+#npm i chalk@2.4.1 -D  

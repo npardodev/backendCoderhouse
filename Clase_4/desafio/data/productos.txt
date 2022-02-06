@@ -23,5 +23,10 @@
     "thumbnail": "./uploads/image-1643344151939",
     "id": 4
   },
- 
+  {
+    "title": "aaa",
+    "price": "dsfdsf",
+    "thumbnail": "./uploads/image-teest",
+    "id": 5
+  }
 ]

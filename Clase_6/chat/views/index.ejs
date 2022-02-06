@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/styles.css" type="text/css" rel="stylesheet">
+
+    <!-- socket.io -->
+    <script src="./socket.io/socket.io.js"></script>
+</head>
+
+<body class="text-center">
+    <div class="flex">
+        <h1 class="h3 mb-3 font-weight-bold"> NodeJs Chat!</h1>
+        <div class="container_chat">
+            <h3>Escribe tu mensaje:</h3>
+            <div class="flex">
+                <div class="chat">
+                    <form id="data_user" class="">
+
+                        <label for="user">
+                        <input id="user" type="text" placeholder="Ingresa tu Nombre" required class="text">
+                    </label>
+
+                        <label for="message">
+                        <input id="message" type="text" placeholder="Ingresa tu mensaje" required class="text">
+                    </label>
+
+                        <input type="submit">
+                    </form>
+
+                    <p id="parrafo"></p>
+                </div>
+                <div class="container-fluid" id="messages">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+<script>
+    //generamos la conexion
+    let socket = new io();
+
+    let messages = document.getElementById('messages');
+
+
+    let message = document.getElementById('message');
+    let parrafo = document.getElementById('parrafo');
+    let form_data_user = document.getElementById('data_user');
+
+    /*
+    form_data_user.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log(e.target);
+
+        let student = {
+            user: e.target[0].value,
+            message: e.target[1].value
+        }
+
+        if (student.user == "" || student.message == "") window.location.reload();
+        socket.emit("form_front", student);
+
+    });
+    */
+
+    form_data_user.addEventListener("submit", (e) => {
+        e.preventDefault();
+        addMessage(e);
+    })
+
+
+
+    const addMessage = (event) => {
+
+        event.preventDefault();
+        const msg = {
+            user: document.getElementById('user').value,
+            message: document.getElementById('message').value,
+            date: new Date().toLocaleDateString("en-US")
+        }
+        socket.emit('new-message', msg);
+        return false;
+    }
+
+    const renderMessages = (dataMssg) => {
+
+        let html_msg = dataMssg.map((elem, index) => {
+            return (`<div>
+                    <b>${elem.user}</b> 
+                    <span>${elem.message}</span>
+                    <em>${elem.date}</em>
+                </div> `)
+        }).join("");
+        messages.innerHTML = html_msg;
+    }
+
+
+    //evento de escucha
+    socket.on("messages", data => {
+        console.log(data);
+        renderMessages(data);
+    });
+
+
+
+    //evento de escucha
+    socket.on("fill_message", data => {
+        let sms_html = ``;
+        for (const sms of data) {
+            sms_html += `<b>${user}</b> <span>${message}</span>  <u>${date}</u>`;
+        }
+        parrafo.innerHTML = sms_html;
+    });
+
+
+    //evento de escucha
+    socket.on("init", data => {
+        console.log("dfgdfw3423423432");
+        console.log(data);
+    });
+
+    // Emito
+    socket.emit("Hola_server", (data) => {
+        console.log("Les falta fe en su codigo");
+        console.log(data);
+
+    });
+
+
+    message.addEventListener("keyup", (event) => {
+        console.log(event.target.value);
+    });
+</script>
+
+</html>

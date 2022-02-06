@@ -1,0 +1,20 @@
+[                                                                                                                                                     
+    {
+        "title": "Escuadra",
+        "price": 123.45,
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+        "id": 1
+    },
+      {
+        "title": "Calculadora",
+        "price": 560.42,
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+        "id": 2
+    },
+    {
+        "title": "Regla",
+        "price": 99.25,
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+        "id": 3
+    }
+]
